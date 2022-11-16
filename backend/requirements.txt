@@ -8,3 +8,4 @@ python-decouple
 pytz
 django-colorfield
 influxdb_client
+cachetools

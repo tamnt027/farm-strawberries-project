@@ -67,7 +67,7 @@ class InfluxDbHelper:
         return result
          
     @cached(cache=TTLCache(maxsize=1024, ttl=60))
-    def get_history_data(self, measurement, dev_eui, application, period='1m', time_range="24h"):
+    def get_history_data(self, measurement, dev_eui, application, period='30m', time_range="72h"):
         query = get_history_data_query_string(bucket=self._bucket, 
                                       time_range=time_range, measurement= measurement, 
                                       application=application, period= period, dev_eui= dev_eui)
