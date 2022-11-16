@@ -7,11 +7,13 @@ import {
   FETCH_CHARTS_REQUEST,
   FETCH_CHARTS_SUCCESS,
   FETCH_CHARTS_FAILURE,
+  FETCH_CHART_SUCCESS,
 } from './types';
-import {fetchGroupsApi, fetchChartsApi} from '../api';
+import {fetchGroupsApi, fetchChartsApi, fetchChartDetailApi} from '../api';
 import {apiErrorHandler} from '../utils/errorhandler';
 
 export const fetchGroups = () => dispatch => {
+  console.log("Fetch Groups")
   dispatch(fetchGroupsRequest());
 
   fetchGroupsApi()
@@ -68,12 +70,21 @@ export const fetchCharts = (group) => dispatch => {
   fetchChartsApi(group)
     .then(response => {
       dispatch(fetchChartsSuccess(response.data));
+      console.log("fetchChartsApi OK")
+      console.log(response.data)
+      for (const chart of response.data.charts) {
+          console.log(`fetchChart ${chart.id}`)
+          dispatch(fetchChart(chart.id));
+      }
+
     })
     .catch(error => {
       const errorMessage = apiErrorHandler(error);
       dispatch(fetchChartsFailure(errorMessage));
     });
 };
+
+
 
 export const fetchChartsRequest = () => {
   return {
@@ -93,4 +104,29 @@ export const fetchChartsFailure = error => {
     type: FETCH_CHARTS_FAILURE,
     error,
   };
+};
+
+
+
+export const fetchChartSuccess = data => {
+  return {
+    type: FETCH_CHART_SUCCESS,
+    fetchedChart: data,
+  };
+};
+
+
+export const fetchChart = (chartId) => dispatch => {
+  // dispatch(fetchChartsRequest());
+
+  console.log(`Call API Fetch chart ${chartId}`)
+
+  fetchChartDetailApi(chartId)
+    .then(response => {
+      dispatch(fetchChartSuccess(response.data));
+    })
+    .catch(error => {
+      // const errorMessage = apiErrorHandler(error);
+      // dispatch(fetchChartsFailure(errorMessage));
+    });
 };

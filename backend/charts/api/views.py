@@ -10,7 +10,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from charts.models import Chart, LoraMeasurement, ChartGroup
-from .serializers import ChartGroupDetailSerializer, ChartGroupListSerializer
+from .serializers import ChartGroupDetailSerializer, ChartGroupListSerializer, ChartSerializer, ChartDetailSerializer
 from charts import utility
 from django.conf import settings
 
@@ -26,6 +26,14 @@ class ChartGroupListAPIView(generics.ListAPIView):
     queryset = ChartGroup.objects.all()
     serializer_class = ChartGroupListSerializer
     permission_classes = [AllowAny]
+   
+   
+class ChartListAPIView(generics.ListAPIView):
+    queryset = Chart.objects.all()
+    serializer_class = ChartSerializer
+    permission_classes = [AllowAny] 
+    
+
     
 class ChartGroupDetailAPIView(generics.RetrieveAPIView):
     queryset = ChartGroup.objects.all()
@@ -33,6 +41,12 @@ class ChartGroupDetailAPIView(generics.RetrieveAPIView):
     lookup_field = 'pk'
     permission_classes = [AllowAny]
 
+
+class ChartDetailAPIView(generics.RetrieveAPIView):
+    queryset = Chart.objects.all()
+    serializer_class = ChartDetailSerializer
+    lookup_field = 'pk'
+    permission_classes = [AllowAny]
 
 @csrf_exempt
 @require_http_methods(["POST"])

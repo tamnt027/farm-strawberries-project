@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchGroups, setSelectedGroup, fetchCharts} from '../../actions';
+import {fetchGroups, setSelectedGroup, fetchCharts, fetchChart} from '../../actions';
 // import UserList from '../../components/userlist';
 import ChartPage from '../../components/chartpage'
 import ChartGroup from '../../components/chartgroup';
@@ -43,6 +43,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchCharts(group));
   }, 
 
+  fetchChart: (chartId) => {
+    dispatch(fetchChart(chartId));
+  },
 });
 
 export default connect(

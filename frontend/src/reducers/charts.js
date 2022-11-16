@@ -6,6 +6,7 @@ import {
   FETCH_CHARTS_REQUEST,
   FETCH_CHARTS_SUCCESS,
   FETCH_CHARTS_FAILURE,
+  FETCH_CHART_SUCCESS,
 
 } from '../actions/types';
 
@@ -65,6 +66,29 @@ const groups = (state = initialState, action) => {
         isLoading: false,
         charts: [],
         error: action.error,
+      };
+
+    case FETCH_CHART_SUCCESS:
+      const fetchedChart = action.fetchedChart
+      // console.log(fetchedChart)
+      // const newState =  {
+      //   ...state,
+      //   charts : this.state.charts.map(el => (el.id === fetchedChart.id ? {...el, fetchedChart} : el)),
+      //   // charts:  action.fetchedChart
+      // };
+      console.log("FetchedChart")
+      console.log(fetchedChart)
+
+      // return state.map(product => {
+      //   if (product.name === action.payload.name) {
+      //     return {...product, quantity: product.quantity-1}
+      //   };
+      //   return product;
+      // });
+
+      return {
+        ...state,
+        charts : state.charts.map(el => (el.id === fetchedChart.id ? {...el, ...fetchedChart} : el)),
       };
 
     default:

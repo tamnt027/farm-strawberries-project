@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchForums} from '../../actions';
-import ForumList from '../../components/forumlist';
+// import {fetchForums} from '../../actions';
+// import ForumList from '../../components/forumlist';
 
 
 

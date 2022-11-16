@@ -4,6 +4,9 @@ from django.contrib import admin
 from .views import (
     ChartGroupListAPIView,
     ChartGroupDetailAPIView,
+    ChartListAPIView,
+    ChartDetailAPIView,
+    
     # UserLoginAPIView,
     # UserLogoutAPIView,
     # UserDetailAPIView,
@@ -22,6 +25,8 @@ urlpatterns = [
     
     path('group/', ChartGroupListAPIView.as_view(), name='chart-group-list'),
     path('group/<slug:pk>/', ChartGroupDetailAPIView.as_view(), name='chart-group-detail'),
+    path('chart/', ChartListAPIView.as_view(), name='chart-list'),
+    path('chart/<slug:pk>/', ChartDetailAPIView.as_view(), name='chart-detail'),
     # path('register/', UserCreateAPIView.as_view(), name='user-register'),
     # path('login/', UserLoginAPIView.as_view(), name='user-login'),
     # path('logout/', UserLogoutAPIView.as_view(), name='user-logout'),

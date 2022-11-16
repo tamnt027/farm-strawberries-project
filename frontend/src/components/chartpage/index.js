@@ -36,9 +36,8 @@ export default class ChartPage extends Component {
         {this.props.charts &&this.props.charts.map((chart, idx) => {
     
             return (
-              <div className="flex-item">
-                <Chart key={idx} {...chart} />
-
+              <div className="flex-item" key={idx}>
+                <Chart  {...chart} fetchChart={this.props.fetchChart} />
               </div>
             )
         

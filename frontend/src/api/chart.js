@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
   GROUP_URL,
+  CHART_URL,
 } from './constants';
 import {getConfig} from '../utils/config';
 
@@ -13,6 +14,10 @@ export const fetchChartsApi = (group) => {
   return axios.get(`${GROUP_URL}${group.id}/`, getConfig());
 };
 
+
+export const fetchChartDetailApi = (chartId) => {
+  return axios.get(`${CHART_URL}${chartId}/`, getConfig());
+};
 
 // export const fetchGroupApi = thread => {
 //   return axios.get(THREAD_URL + thread, getConfig());

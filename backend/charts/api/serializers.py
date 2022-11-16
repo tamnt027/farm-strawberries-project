@@ -28,6 +28,34 @@ class SeriesDisplayDetailSerializer(serializers.ModelSerializer):
             'yaxis',
         ]
     pass        
+
+class ChartSerializer(serializers.ModelSerializer):
+    group = ChartGroupListSerializer()
+    class Meta:
+        model = Chart
+        fields = ['id', 'name', 'title', 'group', 'data',
+            'frames',
+            'layout',
+            'config',]
+        
+    data = serializers.SerializerMethodField('get_data')
+    frames = serializers.SerializerMethodField('get_frames')
+    layout = serializers.SerializerMethodField('get_layout')
+    config = serializers.SerializerMethodField('get_config')
+    
+
+    
+    def get_data(self, chart : Chart ):
+        return []
+    
+    def get_frames(self, chart):
+        return []
+    
+    def get_layout(self, chart: Chart):
+        return {}
+    
+    def get_config(self, chart):
+        return {}
         
 class ChartDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,8 +73,6 @@ class ChartDetailSerializer(serializers.ModelSerializer):
     frames = serializers.SerializerMethodField('get_frames')
     layout = serializers.SerializerMethodField('get_layout')
     config = serializers.SerializerMethodField('get_config')
-    
-    
     # // const [state, setState] = useState({
     # //     data: [{
     # //         x: [1, 2, 3],
@@ -182,7 +208,7 @@ class ChartDetailSerializer(serializers.ModelSerializer):
 class ChartGroupDetailSerializer(serializers.ModelSerializer):
     # name = serializers.CharField(source='name')
     # description = serializers.CharField('')
-    charts = ChartDetailSerializer(many=True)
+    charts = ChartSerializer(many=True)
     class Meta:
         model = ChartGroup
         fields = [
