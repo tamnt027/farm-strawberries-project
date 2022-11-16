@@ -1,0 +1,10 @@
+dj-database-url
+Django
+django-cors-headers
+djangorestframework
+Pillow
+PyJWT
+python-decouple
+pytz
+django-colorfield
+influxdb_client
