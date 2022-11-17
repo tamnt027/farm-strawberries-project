@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from charts.influxdb_helper import InfluxDbHelper
 from charts.models import Chart, ChartGroup, SeriesDisplay
+from charts.utility import get_history_data
 
 class ChartGroupListSerializer(serializers.ModelSerializer):
     # name = serializers.CharField(source='name')
@@ -62,13 +63,13 @@ class ChartDetailSerializer(serializers.ModelSerializer):
     
     def get_data(self, chart : Chart ):
         results = []
-        influxdb_helper = InfluxDbHelper.get_instance()
         series_display : SeriesDisplay   # type annotation purpose only
         annotations_array = []
         offset = 0
+        group_id = chart.group.id
         for series_display in chart.series_displays.all():
-            (timestamps, values) = influxdb_helper.get_history_data(series_display.measurement.name,
-                                                                series_display.device.device_id, chart.group.name)
+            (timestamps, values) = get_history_data(series_display.measurement.name,
+                                                                series_display.device.device_id, chart.group.name, group_id)
             # results.append({
             #     "x": timestamps,
             #     "y": values,
@@ -98,10 +99,10 @@ class ChartDetailSerializer(serializers.ModelSerializer):
     def get_layout(self, chart: Chart):
         annotations_array = []
         offset = 0
+        group_id = chart.group.id
         for series_display in chart.series_displays.all():
-            influxdb_helper = InfluxDbHelper.get_instance()
-            (timestamps, values) = influxdb_helper.get_history_data(series_display.measurement.name,
-                                                                series_display.device.device_id, chart.group.name)
+            (timestamps, values) = get_history_data(series_display.measurement.name,
+                                                                series_display.device.device_id, chart.group.name, group_id)
             annotation = {
                         "xref": 'paper',
                         "yref" : 'paper',
