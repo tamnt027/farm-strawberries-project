@@ -12,9 +12,9 @@ export default class Chart extends Component {
     //   disabled = true;
     // }
     const {data, config, frames, layout} = this.props
-
+    console.log(`Render chart ${this.props.id}`)
     return (
-
+      
       <Plot
         data={data}
         config= {config}
