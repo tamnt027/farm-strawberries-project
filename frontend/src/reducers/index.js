@@ -8,6 +8,7 @@ import users from './users';
 import forum from './forum';
 import thread from './thread';
 import groups from './charts';
+import qrscanner from './qrscanner';
 
 const rootReducer = combineReducers({
   auth,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   users,
   forum,
   thread,
-  groups
+  groups,
+  qrscanner,
 });
 
 export default rootReducer;

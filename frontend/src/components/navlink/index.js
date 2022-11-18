@@ -17,7 +17,10 @@ const Navlink = () => {
         <Icon name="chart line" className="navlinkIcon" />
         <Link to="/charts">Charts</Link>
       </div>
-
+      <div className="link">
+        <Icon name="camera" className="navlinkIcon" />
+        <Link to="/qrscanner">QR Scanner</Link>
+      </div>
       {/* <div className="link">
         <Icon name="users" className="navlinkIcon" />
         <Link to="/users">Users</Link>

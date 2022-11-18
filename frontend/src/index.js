@@ -10,11 +10,11 @@ import store, {persistor} from './store';
 import HeaderContainer from './containers/header';
 import FooterContainer from './containers/footer'
 import ModalContainer from './containers/modal';
-import UserProfileContainer from './containers/userprofile';
-import UsersContainer from './containers/users';
-import ThreadContainer from './containers/thread';
+// import UserProfileContainer from './containers/userprofile';
+// import UsersContainer from './containers/users';
+
 import HomeContainer from './containers/home';
-import ForumContainer from './containers/forum';
+import QRScannerContainer from './containers/qrscanner'
 import NotFoundPage from './components/notfoundpage';
 import ChartsContainer from './containers/charts'
 import registerServiceWorker from './registerServiceWorker';
@@ -34,6 +34,7 @@ ReactDOM.render(
               <Route path="/user/:username" component={UserProfileContainer} />
               <Route path="/forum/:forum" component={ForumContainer} />
               <Route path="/thread/:thread" component={ThreadContainer} /> */}
+              <Route exact path="/qrscanner" component={QRScannerContainer} />
               <Route exact path="/" component={HomeContainer} />
               <Route component={NotFoundPage} />
             </Switch>
