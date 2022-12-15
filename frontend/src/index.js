@@ -18,7 +18,8 @@ import QRScannerContainer from './containers/qrscanner'
 import NotFoundPage from './components/notfoundpage';
 import ChartsContainer from './containers/charts'
 import registerServiceWorker from './registerServiceWorker';
-
+import UserProfileContainer from './containers/userprofile'
+import UsersContainer from './containers/users'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -30,8 +31,10 @@ ReactDOM.render(
             <HeaderContainer />
             <Switch>
               <Route path="/charts" component={ChartsContainer} />
-              {/* <Route path="/users" component={UsersContainer} />
               <Route path="/user/:username" component={UserProfileContainer} />
+              <Route path="/users" component={UsersContainer} />
+              {/* <Route path="/users" component={UsersContainer} />
+              
               <Route path="/forum/:forum" component={ForumContainer} />
               <Route path="/thread/:thread" component={ThreadContainer} /> */}
               <Route exact path="/qrscanner" component={QRScannerContainer} />

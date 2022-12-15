@@ -4,7 +4,10 @@ import {Link} from 'react-router-dom';
 import {Icon} from 'semantic-ui-react';
 import './styles.css';
 
-const Navlink = () => {
+const Navlink = (props) => {
+
+  const isAuthenticated = props.isAuthenticated;
+
   return (
     <div className="navlinkContainer">
       <Logo />
@@ -17,14 +20,17 @@ const Navlink = () => {
         <Icon name="chart line" className="navlinkIcon" />
         <Link to="/charts">Charts</Link>
       </div>
+      { (isAuthenticated) &&
+            <div className="link">
+            <Icon name="camera" className="navlinkIcon" />
+            <Link to="/qrscanner">QR Scanner</Link>
+          </div>
+      }
+
       <div className="link">
-        <Icon name="camera" className="navlinkIcon" />
-        <Link to="/qrscanner">QR Scanner</Link>
-      </div>
-      {/* <div className="link">
         <Icon name="users" className="navlinkIcon" />
         <Link to="/users">Users</Link>
-      </div> */}
+      </div>
       {/* <div className="link">
         <Icon name="github" className="navlinkIcon" />
         <a href="https://github.com/tamnt027">GitHub</a>

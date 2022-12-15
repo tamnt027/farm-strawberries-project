@@ -21,7 +21,7 @@ class HeaderContainer extends Component {
 
     return (
       <div className="headerContainer">
-        <Navlink />
+        <Navlink isAuthenticated={isAuthenticated}/>
         <UserMenu
           isAuthenticated={isAuthenticated}
           username={username}

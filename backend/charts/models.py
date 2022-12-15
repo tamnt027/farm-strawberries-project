@@ -56,5 +56,8 @@ class Chart(models.Model):
     group = models.ForeignKey(ChartGroup, null= False, on_delete=models.CASCADE,
                                             related_name= 'charts' )
     
+    class Meta:
+        ordering = ['display_priority']
+    
     def __str__(self):
         return f"{self.id}. {self.name}"

@@ -2,10 +2,17 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import QRScanner from '../../components/qrscanner';
 import {addQRCode, clearAllQRCodes} from '../../actions';
+import NotAllowPage from '../../components/notallowpage';
+    
 class QRScannerContainer extends Component {
 
   render() {
     // const {results} = this.props.results;
+    const isAuthenticated = this.props.isAuthenticated;
+    if (isAuthenticated=== false) {
+      return(<NotAllowPage />)
+    }
+
     return (<>
           <QRScanner {...this.props} />
 
@@ -26,7 +33,7 @@ const mapStateToProps = state => ({
   isLoading: state.qrscanner.isLoading,
   error: state.qrscanner.error,
   results : state.qrscanner.results,
-  
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = dispatch => ({

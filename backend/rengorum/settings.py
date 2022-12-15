@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'threads',
     'posts',
     'charts',
+    'qrapp',
 ]
 
 # https://github.com/ottoyiu/django-cors-headers

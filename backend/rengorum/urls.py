@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/forum/', include('forums.api.urls')),
     path('api/thread/', include('threads.api.urls')),
     path('api/post/', include('posts.api.urls')),
-    path('api/chart/', include('charts.api.urls'))
+    path('api/chart/', include('charts.api.urls')),
+    path('api/qr/', include('qrapp.api.urls')),
 ]
